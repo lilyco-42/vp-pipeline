@@ -1,0 +1,21 @@
+[Unit]
+Description=vp-pipeline 定时器 — 每天 4 次自动生成短视频
+Documentation=file:///home/radxa/vp/README.md
+
+[Timer]
+# 每天 02:00 / 08:00 / 14:00 / 20:00 各跑一次
+OnCalendar=*-*-* 02,08,14,20:00:00
+
+# 错过的时间点（比如当时在重启）开机后补跑一次
+Persistent=true
+
+# 随机延迟最多 10 分钟，避免每次都卡在整点抢 CPU
+RandomizedDelaySec=600
+
+# 开机后如果距上次执行已超过 6 小时，尽快补一次
+OnBootSec=15min
+
+Unit=vp-pipeline.service
+
+[Install]
+WantedBy=timers.target

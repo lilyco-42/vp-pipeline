@@ -1,0 +1,43 @@
+[Unit]
+Description=vp-pipeline — 自动生成短视频（文案 → 配音 → 渲染 → 发布）
+Documentation=file:///home/radxa/vp/README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=radxa
+Group=radxa
+WorkingDirectory=/home/radxa/vp
+
+# ── 行为开关 ────────────────────────────────────────────
+# PUBLISH=1  生成后自动投 B站（需先 biliup login 扫码，否则自动跳过）
+Environment=PUBLISH=1
+
+# CLEANUP=1  自动清理旧产物（**只删已发布且超期的**，见 run_pipeline.sh ⑤）
+Environment=CLEANUP=1
+Environment=RETENTION_DAYS=7
+Environment=MIN_KEEP=10
+
+# ── 生成参数 ────────────────────────────────────────────
+Environment=CHARS=300
+Environment=VOICE=zh-CN-YunxiNeural
+Environment=RATE=+8%
+Environment="KICKER=AI · 科技"
+
+ExecStart=/home/radxa/vp/run_pipeline.sh
+
+# 单次运行上限 30 分钟（正常 3 分钟；含发布最多约 10 分钟）
+TimeoutStartSec=1800
+
+StandardOutput=journal
+StandardError=journal
+
+# 渲染是 CPU 密集，别把 8 核全占满
+CPUWeight=60
+MemoryMax=2G
+IOSchedulingClass=best-effort
+IOSchedulingPriority=5
+
+# 失败不重启（由 timer 下一轮再来）
+Restart=no
