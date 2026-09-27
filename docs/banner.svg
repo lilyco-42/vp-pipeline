@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" font-family="system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a0f1c"/><stop offset="1" stop-color="#701a75"/>
+    </linearGradient>
+    <linearGradient id="ac" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e879f9"/><stop offset="1" stop-color="#f0abfc"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="200" fill="url(#bg)"/>
+  <circle cx="540" cy="30" r="80" fill="#e879f9" opacity="0.08"/>
+  <text x="552" y="164" font-size="84" font-weight="700" fill="#e879f9" opacity="0.30" text-anchor="end" font-family="Consolas,monospace">VP</text>
+  <rect x="0" y="0" width="6" height="200" fill="url(#ac)"/>
+  <rect x="36" y="46" height="34" rx="17" width="100" fill="#e879f9" opacity="0.14" stroke="#e879f9"/>
+  <text x="86" y="69" font-size="15" fill="#f0abfc" text-anchor="middle">流水线</text>
+  <text x="36" y="126" font-size="32" font-weight="700" fill="#f8fafc">vp-pipeline</text>
+  <text x="36" y="158" font-size="17" fill="#f0abfc">A7A 全自动短视频生产线 · 话题 → 成片 · 板端定时调度</text>
+</svg>
